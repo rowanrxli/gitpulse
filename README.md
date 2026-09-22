@@ -8,7 +8,7 @@
 
 **An open-source GitHub radar for finding promising repositories before everyone else does.**
 
-[Live GitPulse](https://gitpulse-radar.zl02903-5-8218.chatgpt.site) · [How Pulse works](docs/pulse-algorithm.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
+[Live GitPulse](https://gitpulse-radar.zl02903-5-8218.chatgpt.site) · [How Pulse works](docs/pulse-algorithm.md) · [Early discovery](docs/early-discovery.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/rowanrxli/gitpulse/gitpulse-sync.yml?branch=main&label=daily%20sync)
 ![CI](https://img.shields.io/github/actions/workflow/status/rowanrxli/gitpulse/ci.yml?branch=main&label=tests)
@@ -30,7 +30,7 @@ Instead of ranking only by total stars, GitPulse combines recent star velocity, 
 - **Newborn** — very young repositories worth watching early.
 - **Accelerating** — projects whose latest growth is moving above their recent baseline.
 - **Signal Spotlight** — one repository with especially interesting momentum.
-- **Repository detail pages** — star momentum, cohort context, Pulse components, and recent activity.
+- **Repository detail pages** — star momentum, cohort context, Pulse components, recent activity, and deterministic **Why it’s rising** explanations.
 
 The public explorer is read-only. Collection controls, rate-limit diagnostics, job state, and server details stay behind the administrator surface.
 
@@ -222,7 +222,8 @@ The published version currently uses the Sites/Vinext runtime with a Cloudflare 
 
 - [x] Add a private, bounded candidate-discovery pass beyond the original watchset.
 - [ ] Promote evidence-backed early signals from the private pool to the public radar.
-- [ ] Add deterministic “Why it’s rising” explanations and a Daily Radar view.
+- [x] Add deterministic “Why it’s rising” explanations and administrator-only early-signal previews.
+- [ ] Promote evidence-backed candidates and use them to power a Daily Radar view.
 - [ ] Improve category explanations and per-signal context.
 - [ ] Add richer historical comparisons without hiding missing data.
 - [ ] Make self-hosting outside the current Sites runtime simpler.
