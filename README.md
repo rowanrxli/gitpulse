@@ -1,4 +1,4 @@
-![GitPulse dashboard](docs/gitpulse-home.png)
+![GitPulse dashboard](docs/gitpulse-home.png.png)
 <div align="center">
 
 # GitPulse
