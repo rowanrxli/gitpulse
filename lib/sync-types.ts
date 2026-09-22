@@ -1,0 +1,3 @@
+import type {Diagnostic,FailureKind} from './github-client';
+export type Outcome={metadata:'pending'|'success'|'failed';history:'pending'|'success'|FailureKind;reason?:string;metadataCached?:boolean;historyCached?:boolean};
+export type SyncState={runId:string;phase:'running'|'paused'|'completed';startedAt:number;updatedAt:number;queue:number[];cursor:number;outcomes:Record<string,Outcome>;retryAt:number;backoff:number;authenticated:boolean;authenticationVerified:boolean;diagnostics:Diagnostic[];lastByResource:Record<string,Diagnostic>;requests:number;primaryRateLimited:boolean;secondaryRateLimited:boolean;};

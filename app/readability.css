@@ -1,0 +1,9 @@
+/* Keep dense dashboard labels readable at desktop and narrow widths. */
+.collection-status{display:flex;justify-content:space-between;gap:20px;padding:13px 16px;margin:20px 0;border:1px solid #35422c;border-radius:8px;background:#1b2517;color:#b4c3a6;font-size:14px;line-height:1.6}.collection-status>span:last-child{white-space:nowrap;color:#8f9f80}.collection-status strong{color:#d9ebc5}.repo-main{overflow-wrap:anywhere}@media(max-width:620px){.collection-status{flex-direction:column;gap:5px}}
+.version,.data-badge,.pulse small,.eyebrow,.panel-kicker{font-size:12px}
+.stats span,.filters [data-slot=select-trigger],.list-caption,.list-caption [data-slot=select-trigger],.search input,.view-tabs button{font-size:14px}
+.stats small,.repo-meta,.repo-trend small,.spotlight-stats span,.footnote,.source-note,footer,.rank-number,.chart-axis,.detail-metrics span,.score-part>div:first-child{font-size:12px}
+.repo-main p,.signal-panel p,.explainer p,.section-header p,.score-panel>p{font-size:14px;line-height:1.7}
+.method p{font-size:16px}
+.stats strong{flex-wrap:wrap}
+@media(max-width:620px){.view-tabs{height:auto;flex-wrap:wrap;justify-content:flex-start;gap:14px 4px}.view-tabs button{font-size:14px;flex:1 1 45%;padding-bottom:12px}.repo-title{font-size:14px}.repo-title .owner{font-size:12px}.repo-main p{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.eyebrow{letter-spacing:.5px;font-size:12px}.data-badge{font-size:12px}.repo-meta{flex-wrap:wrap}.stats small{font-size:12px}.github-link{padding:8px}.detail-head h1{font-size:30px}}

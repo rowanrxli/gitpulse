@@ -1,0 +1,11 @@
+# GitHub collection
+
+The current watchset is synchronized before any discovery expansion. This stabilization release does not add repositories during Sync. A logical cycle persists its ordered repository IDs, cursor, per-repository outcomes and safe request diagnostics in `sync_control`. Each request handles at most five repositories, serially, with a 45-second soft budget and a five-minute database lease. The browser continues batches until complete or paused. A later Sync resumes an interrupted cycle; refreshing the page does not lose progress.
+
+Missing or stale histories precede already current histories. Metadata and history have six-hour cache lifetimes. Conditional requests use ETags. History uses GitHub's aggregated stargazers/history endpoint: six recent weeks for initial collection, then only the overlapping missing weeks (usually two), one page, never individual stargazers. Daily buckets merge into a rolling cache, preserving complete observations after API errors. Unknown gaps are never filled with zero. Insufficient scoring baselines do not receive a Pulse score.
+
+All API calls pass through one server-only client. It attaches the configured credential but persists only authentication state, HTTP status, error classification and rate-limit response headers. Raw request headers, credential values and raw GitHub error bodies are never stored. A successful authenticated request verifies that the configured credential was used and accepted. Diagnostics and run summaries are available only through the administrator-protected `/api/admin/status` endpoint. The public `/api/repos` response is an explicit product-data projection and does not expose diagnostics, credentials, ETags, or internal sync state.
+
+Primary depletion honors reset; secondary limits honor Retry-After or exponential cooldown. Other 403 responses are classified forbidden and pause traffic. No immediate retry occurs. Successful responses that report zero remaining also pause the queue. Non-rate failures preserve cached observations and defer that repository. Insufficient-history responses preserve any valid days but cannot supply a full scoring baseline. Rate-limit failures stay at the current cursor for retry after the persisted deadline.
+
+Validation: `node --experimental-strip-types --test tests/*.test.ts` and `node node_modules/typescript/bin/tsc --noEmit`.

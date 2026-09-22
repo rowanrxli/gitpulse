@@ -1,0 +1,12 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "37d7370b-9775-4bc9-979a-34f46622e66a",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "job_locks": {"name":"job_locks","columns":{"name":{"name":"name","type":"text","primaryKey":true,"notNull":true,"autoincrement":false},"until":{"name":"until","type":"integer","primaryKey":false,"notNull":true,"autoincrement":false}},"indexes":{},"foreignKeys":{},"compositePrimaryKeys":{},"uniqueConstraints":{},"checkConstraints":{}},
+    "repositories": {"name":"repositories","columns":{"id":{"name":"id","type":"integer","primaryKey":true,"notNull":true,"autoincrement":false},"full_name":{"name":"full_name","type":"text","primaryKey":false,"notNull":true,"autoincrement":false},"payload":{"name":"payload","type":"text","primaryKey":false,"notNull":true,"autoincrement":false},"fetched_at":{"name":"fetched_at","type":"integer","primaryKey":false,"notNull":true,"autoincrement":false}},"indexes":{},"foreignKeys":{},"compositePrimaryKeys":{},"uniqueConstraints":{},"checkConstraints":{}},
+    "repo_snapshots": {"name":"repo_snapshots","columns":{"repo_id":{"name":"repo_id","type":"integer","primaryKey":false,"notNull":true,"autoincrement":false},"recorded_at":{"name":"recorded_at","type":"integer","primaryKey":false,"notNull":true,"autoincrement":false},"stars":{"name":"stars","type":"integer","primaryKey":false,"notNull":true,"autoincrement":false},"forks":{"name":"forks","type":"integer","primaryKey":false,"notNull":true,"autoincrement":false}},"indexes":{},"foreignKeys":{"repo_snapshots_repo_id_repositories_id_fk":{"name":"repo_snapshots_repo_id_repositories_id_fk","tableFrom":"repo_snapshots","tableTo":"repositories","columnsFrom":["repo_id"],"columnsTo":["id"],"onDelete":"no action","onUpdate":"no action"}},"compositePrimaryKeys":{"repo_snapshots_repo_id_recorded_at_pk":{"columns":["repo_id","recorded_at"],"name":"repo_snapshots_repo_id_recorded_at_pk"}},"uniqueConstraints":{},"checkConstraints":{}}
+  },
+  "views": {},"enums": {},"_meta": {"schemas": {},"tables": {},"columns": {}},"internal": {"indexes": {}}
+}

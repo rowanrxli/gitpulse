@@ -1,0 +1,30 @@
+name: GitPulse daily sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gitpulse-collection
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    # Set this repository variable to true when the deployment is ready.
+    if: vars.GITPULSE_SCHEDULER_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Continue GitPulse sync
+        env:
+          GITPULSE_ORIGIN: ${{ vars.GITPULSE_ORIGIN }}
+          SYNC_CRON_SECRET: ${{ secrets.SYNC_CRON_SECRET }}
+        run: node scripts/run-sync.mjs
