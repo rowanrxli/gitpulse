@@ -1,4 +1,4 @@
-import {currentHistory,metrics,rank,type Repo} from './scoring';
+import {currentHistory,metrics,rank,type Repo} from './scoring.ts';
 
 export type EarlySignalLabel='EARLY BREAKOUT'|'ACCELERATING'|'EMERGING'|'WATCHING';
 export type SignalFact={label:string;value:string};
