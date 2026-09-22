@@ -27,8 +27,9 @@ export async function discoverCandidates(token?:string,now=Date.now()):Promise<D
  const hidden=repos.filter(isHiddenDiscoveryRepo);
  const base={at:now,added:0,scanned:0,candidates:hidden.length};
  const sinceAttempt=control?.lastAttemptAt?now-control.lastAttemptAt:Infinity;
- if(control?.lastSuccessAt&&now-control.lastSuccessAt<MIN_SUCCESS_INTERVAL)return {...base,attempted:false,reason:'Discovery already completed recently.'};
- if(!control?.lastSuccessAt&&control?.lastAttemptAt&&sinceAttempt<MIN_RETRY_INTERVAL)return {...base,attempted:false,reason:'Discovery retry cooldown is active.'};
+ const lastSuccessAt=control?.lastSuccessAt??0;
+ if(lastSuccessAt&&now-lastSuccessAt<MIN_SUCCESS_INTERVAL)return {...base,attempted:false,reason:'Discovery already completed recently.'};
+ if((control?.lastAttemptAt??0)>lastSuccessAt&&sinceAttempt<MIN_RETRY_INTERVAL)return {...base,attempted:false,reason:'Discovery retry cooldown is active.'};
  if(hidden.length>=MAX_CANDIDATES)return {...base,attempted:false,reason:'Candidate pool is at capacity.'};
 
  const nextControl:DiscoveryControlState={...control,lastAttemptAt:now,totalCandidates:hidden.length};
@@ -40,6 +41,7 @@ export async function discoverCandidates(token?:string,now=Date.now()):Promise<D
   backoff:()=>backoff,
   record:async diagnostic=>{
    if(diagnostic.retryAt){retryAt=Math.max(retryAt,diagnostic.retryAt);backoff++;}
+   else if(diagnostic.remaining===0&&diagnostic.reset)retryAt=Math.max(retryAt,diagnostic.reset*1000+2000);
   },
  });
  const known=new Set(repos.map(r=>r.id));
