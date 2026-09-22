@@ -4,6 +4,7 @@ import {report} from './sync-engine';
 import {rank,currentHistory} from './scoring';
 import {isPublicDiscoveryRepo} from './discovery-policy';
 import {discoverCandidates,readDiscoveryState} from './discovery';
+import {earlySignalThresholds,evaluateEarlySignal} from './early-signal';
 import {serverConfig,cooldownMs,scheduleStatus} from './server-config';
 import {admission,type JobState} from './job-policy';
 
@@ -25,6 +26,8 @@ export async function adminStatus(){
   readDiscoveryState(),
  ]);
  const sync=report(state,repos),ranked=rank(repos),now=Date.now();
+ const hiddenSignals=repos.filter(r=>r.discoveryState==='candidate'||r.discoveryState==='tracking').map(r=>({repo:r,signal:evaluateEarlySignal(r,now)}));
+ const preview=hiddenSignals.sort((a,b)=>Number(b.signal.eligible)-Number(a.signal.eligible)||b.signal.recentStars-a.signal.recentStars||b.signal.latestDay-a.signal.latestDay).slice(0,12).map(({repo,signal})=>({repository:repo.fullName,state:repo.discoveryState,label:signal.label,eligible:signal.eligible,stars:repo.stars,age:repo.age,historyDays:signal.historyDays,latestDay:signal.latestDay,recentStars:signal.recentStars,acceleration:signal.acceleration,reasons:signal.reasons.slice(0,4)}));
  const legacySuccess=state?.phase==='completed'&&sync.summary.failed===0&&sync.summary.rateLimited===0?state.updatedAt:null;
  const discovery={
   candidate:repos.filter(r=>r.discoveryState==='candidate').length,
@@ -36,6 +39,9 @@ export async function adminStatus(){
   lastAdded:discoveryState?.lastAdded??0,
   lastScanned:discoveryState?.lastScanned??0,
   lastError:discoveryState?.lastError??null,
+  promotionEligible:hiddenSignals.filter(x=>x.signal.eligible).length,
+  preview,
+  thresholds:earlySignalThresholds(),
  };
  return {
   job,
