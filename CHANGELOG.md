@@ -2,6 +2,16 @@
 
 All notable changes to GitPulse are documented here.
 
+## [Unreleased]
+
+### Added
+
+- Private early-discovery candidate pool with bounded GitHub repository search.
+- Discovery metadata including first-seen time, stars at discovery, age at discovery, source, and search lane.
+- Candidate lifecycle groundwork: newly discovered repositories remain private as `candidate`, then move to `tracking` after history arrives.
+- Administrator visibility into candidate counts and the latest discovery pass.
+- Public API filtering that keeps candidate and tracking repositories off the radar until an explicit promotion rule is added.
+
 ## [0.2.0] - 2026-09-22
 
 ### Added
