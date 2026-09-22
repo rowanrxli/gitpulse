@@ -11,6 +11,10 @@ All notable changes to GitPulse are documented here.
 - Candidate lifecycle groundwork: newly discovered repositories remain private as `candidate`, then move to `tracking` after history arrives.
 - Administrator visibility into candidate counts and the latest discovery pass.
 - Public API filtering that keeps candidate and tracking repositories off the radar until an explicit promotion rule is added.
+- Deterministic early-signal preview rules for EARLY BREAKOUT, ACCELERATING, EMERGING, and WATCHING states.
+- Administrator preview of promotion-eligible private candidates and the evidence behind each signal.
+- Deterministic **Why it’s rising** explanations on public repository detail pages.
+- Early-discovery documentation with explicit thresholds and limitations.
 
 ## [0.2.0] - 2026-09-22
 
