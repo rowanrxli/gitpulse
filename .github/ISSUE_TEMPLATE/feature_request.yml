@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest an improvement to GitPulse
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What user need or workflow would this improve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the behavior you would like to see.
+    validations:
+      required: true
+  - type: textarea
+    id: signals
+    attributes:
+      label: Signal / scoring impact
+      description: If this changes ranking, cohorts, history, or missing-data behavior, explain how.
