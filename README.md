@@ -6,9 +6,10 @@
 
 **An open-source GitHub radar for finding promising repositories before everyone else does.**
 
-[Live GitPulse](https://gitpulse-radar.zl02903-5-8218.chatgpt.site) · [How Pulse works](docs/pulse-algorithm.md) · [Contributing](CONTRIBUTING.md)
+[Live GitPulse](https://gitpulse-radar.zl02903-5-8218.chatgpt.site) · [How Pulse works](docs/pulse-algorithm.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/rowanrxli/gitpulse/gitpulse-sync.yml?branch=main&label=daily%20sync)
+![CI](https://img.shields.io/github/actions/workflow/status/rowanrxli/gitpulse/ci.yml?branch=main&label=tests)
 ![GitHub License](https://img.shields.io/github/license/rowanrxli/gitpulse)
 ![GitHub Repo stars](https://img.shields.io/github/stars/rowanrxli/gitpulse?style=flat)
 
@@ -226,7 +227,7 @@ The published version currently uses the Sites/Vinext runtime with a Cloudflare 
 
 Contributions are welcome. For scoring changes, keep the algorithm deterministic, document weight or cohort changes, and add tests.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [SYNC.md](SYNC.md), and [PRODUCTION.md](PRODUCTION.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), [CHANGELOG.md](CHANGELOG.md), [SYNC.md](SYNC.md), and [PRODUCTION.md](PRODUCTION.md).
 
 ## License
 
