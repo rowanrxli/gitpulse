@@ -92,6 +92,7 @@ Manual and scheduled refreshes enter the same durable collector. The job runner 
 - Read-only public GitHub radar with search, language filters, growth windows, and detail pages.
 - Transparent Pulse Score with age-cohort comparison.
 - Incremental metadata and star-history collection.
+- Private early-discovery candidate pool that scans for young and recently active smaller repositories without exposing them publicly before promotion.
 - ETag-aware caching and resumable progress.
 - GitHub primary and secondary rate-limit handling.
 - Previously valid history remains available when a refresh fails.
@@ -219,7 +220,9 @@ The published version currently uses the Sites/Vinext runtime with a Cloudflare 
 
 ## Roadmap
 
-- [ ] Expand repository discovery beyond the current watchset.
+- [x] Add a private, bounded candidate-discovery pass beyond the original watchset.
+- [ ] Promote evidence-backed early signals from the private pool to the public radar.
+- [ ] Add deterministic “Why it’s rising” explanations and a Daily Radar view.
 - [ ] Improve category explanations and per-signal context.
 - [ ] Add richer historical comparisons without hiding missing data.
 - [ ] Make self-hosting outside the current Sites runtime simpler.
