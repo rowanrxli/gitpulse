@@ -1,5 +1,7 @@
 name: GitPulse daily sync
 
+# GitPulse scheduler heartbeat - force GitHub Actions schedule refresh
+
 on:
   workflow_dispatch:
   schedule:
