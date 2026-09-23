@@ -5,6 +5,8 @@ on:
   schedule:
     # Avoid the top of the hour; GitHub documents higher scheduler load there.
     - cron: "17 9 * * *"
+    # Five-minute fallback: cooldown handling makes this a clean no-op if the first run succeeded.
+    - cron: "22 9 * * *"
 
 permissions:
   contents: read
