@@ -1,11 +1,10 @@
 name: GitPulse daily sync
 
-# GitPulse scheduler heartbeat - force GitHub Actions schedule refresh
-
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 9 * * *"
+    # Avoid the top of the hour; GitHub documents higher scheduler load there.
+    - cron: "17 9 * * *"
 
 permissions:
   contents: read
