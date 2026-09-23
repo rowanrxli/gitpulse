@@ -3,7 +3,8 @@ name: GitPulse scheduler smoke test
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    # Run at odd minutes to avoid GitHub's busiest top-of-hour window.
+    - cron: "2-57/5 * * * *"
 
 permissions:
   contents: read
