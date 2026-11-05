@@ -1,12 +1,10 @@
 name: GitPulse daily sync
 
+# Operations temporarily paused at the owner's request.
+# Previous UTC schedules: 17 9 * * * and 22 9 * * *.
+# To resume, restore those schedule triggers and the job condition below.
 on:
   workflow_dispatch:
-  schedule:
-    # Avoid the top of the hour; GitHub documents higher scheduler load there.
-    - cron: "17 9 * * *"
-    # Five-minute fallback: cooldown handling makes this a clean no-op if the first run succeeded.
-    - cron: "22 9 * * *"
 
 permissions:
   contents: read
@@ -17,8 +15,8 @@ concurrency:
 
 jobs:
   sync:
-    # Set this repository variable to true when the deployment is ready.
-    if: vars.GITPULSE_SCHEDULER_ENABLED == 'true'
+    # Paused: previously vars.GITPULSE_SCHEDULER_ENABLED == 'true'.
+    if: false
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
