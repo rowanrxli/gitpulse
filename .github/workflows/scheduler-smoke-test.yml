@@ -1,18 +1,16 @@
 name: GitPulse scheduler smoke test
 
+# Operations temporarily paused at the owner's request.
+# Previous UTC schedule: 2-57/5 * * * *.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-  schedule:
-    # Run at odd minutes to avoid GitHub's busiest top-of-hour window.
-    - cron: "2-57/5 * * * *"
 
 permissions:
   contents: read
 
 jobs:
   heartbeat:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Show scheduler event
